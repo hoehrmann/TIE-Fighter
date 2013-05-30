@@ -1,0 +1,166 @@
+ ------------------------------------------------------------------------------
+ | The Tie-Fighter Mission (*.TIE) FileFormat Description                     |
+ ------------------------------------------------------------------------------
+  Introduction:
+  This Textfile will describe the Tie-Fighter Mission FileFormat byte for byte.
+  All numbers from offset and length are decimal values. For any comment,
+  congratulation, permissions, or something like that contact me via E-Mail:
+  bjoern@hoehrmann.de.
+
+  Copyright (c) 1997 by Bjoern Hoehrmann all rights reseved.
+
+   --|The File Header|---------------------------------------------------------
+   | This describes the Tie File Header                                       |
+   ----------------------------------------------------------------------------
+   Offset Length  Type  Description
+
+      0       2  (word) Identifier [FF FF]
+     +2       1  (byte) Number of Units in this file
+     +3       1  (byte) Unknown
+     +4       1  (byte) Number of messages in this file
+     +5       5  (byte) Unknown
+    +10       1  (byte) Briefing Personal
+    +11      13  (byte) Unknown
+    +24      63  (char) Primary Goals Completed msg 1
+    +86       1  (byte) Unknown (Sperator)
+    +88      63  (char) Primary Goals Completed msg 2
+   +150       1  (byte) Unknown (Seperator)
+   +152      63  (char) Secondary Goals Completed msg 1
+   +214       1  (byte) Unknown (Seperator)
+   +216      63  (char) Secondary Goals Completed msg 2
+   +279       1  (byte) Unknown (Seperator)
+   +280      63  (char) Primary Goals Failed msg 2
+   +343       1  (byte) Unknown (Seperator)
+   +344      63  (char) Primary Goals Failed msg 2
+   +407       2  (word) Unknown (Seperator)
+   +409      11  (char) Name of IFF 1
+   +420       1  (byte) Unknown (Seperator)
+   +421      11  (char) Name of IFF 2
+   +432       1  (byte) Unknown (Seperator)
+   +433      11  (char) Name of IFF 3
+   +444       1  (byte) Unknown (Seperator)
+   +445      11  (char) Name of IFF 4
+   +456       2  (word) Unknown (Seperator)
+
+   --|+order|------------------------------------------------------------------
+   | This is one order block. every FG contains 3 of them.                    |
+   ----------------------------------------------------------------------------
+   Offset Length  Type  Description
+
+     +0       1  (byte) Order 
+     +1       1  (byte) Speed
+     +2       1  (byte) Number of repeats
+     +3       1  (byte) Number of Special repeats
+     +4       1  (byte) Unknown
+     +5       1  (byte) Unknown
+     +6       1  (byte) General type of target 1
+     +7       1  (byte) Exact description of target 1
+     +8       1  (byte) General type of target 2
+     +9       1  (byte) Exact description of target 2
+    +10       2  (word) Unknown
+    +12       1  (byte) General type of target 3
+    +13       1  (byte) Exact description of target 3
+    +14       1  (byte) General type of target 4
+    +15       1  (byte) Exact description of target 4
+    +16       2  (word) Unknown
+
+   --|Flightgroups|------------------------------------------------------------
+   | This contains the full description of a single FlightGroup.              |
+   ----------------------------------------------------------------------------
+   Offset Length  Type  Description
+
+      0      11  (char) Name of the Flightgroup
+    +11       1  (byte) Unknown (Seperator)
+    +12      11  (char) Name of Pilot
+    +23       1  (byte) Unknown (Seperator)
+    +24      11  (char) Crafts Cargo 1
+    +35       1  (byte) Unknown (Seperator)
+    +36      11  (char) Crafts Cargo 2
+    +47       1  (byte) Unknown (Seperator)
+    +48       1  (byte) Special Craft
+    +49       1  (byte) Special Craft Random byte
+    +50       1  (byte) Type Identifier
+    +51       1  (byte) Number of crafts in FG
+    +52       1  (byte) FG start status
+    +53       1  (byte) type of FG's missles
+    +54       1  (byte) type of FG's beam weapon
+    +55       1  (byte) IFF Identifier
+    +56       1  (byte) AI level
+    +57       1  (byte) Color
+    +58       1  (byte) Radio Control
+    +59       1  (byte) Unused
+    +60       1  (byte) Formation of FG's Crafts
+    +61       1  (byte) Unknown
+    +62       1  (byte) Unknown
+    +63       1  (byte) Unused
+    +64       1  (byte) Number of Waves
+    +65       1  (byte) Unknown
+    +66       1  (byte) Players Position (You)
+    +67       6  (byte) Unknown
+    +73       1  (byte) On which Difficultly this craft appears
+    +74       1  (byte) Action to happen for arrival
+    +75       1  (byte) General description of CraftType
+    +76       1  (byte) Special description of Craft
+    +77       8  (byte) Unknown
+    +85       1  (byte) Delay after happenings
+    +86      10  (byte) Unknown
+    +96       1  (byte) Number of FG this craft arrives from
+    +97       1  (byte) Arrives via Hyperdrive or Mothership
+    +98       1  (byte) Number of FG this craft departs to
+    +99       1  (byte) Departs via Hyperdrive or Mothership
+   +100       1  (byte) Number of FG this craft arrives alt. from
+   +101       1  (byte) Arrives alt. via Hyperdrive or Mothership
+   +102       1  (byte) Number of FG this craft alt. departs to
+   +103       1  (byte) Departs alt. via Hyperdrive or Mothership
+   +104      54 (order) -->see order (3 times)
+   +158       1  (byte) Happening for Primary goal
+   +159       1  (byte) Number of crafts from FG
+   +160       1  (byte) Happening for Secondary goal
+   +161       1  (byte) Number of crafts from FG
+   +162       1  (byte) Unused (Happening for Secret goal)
+   +163       1  (byte) Unused (Number of crafts from FG)
+   +164       1  (byte) Happening for Bonus goal
+   +165       1  (byte) Number of crafts from FG
+   +166       1  (byte) Bonus Points
+   +167     119  (byte) Unknown
+   +286       1  (byte) Visibility on Briefing
+   +287       5  (byte) Unknown
+
+   --|Messages|----------------------------------------------------------------
+   | This contains the full description of Flight message.                    |
+   ----------------------------------------------------------------------------
+   Offset Length  Type  Description
+
+      0      63  (char) Message to send
+     63       1  (byte) Unknown
+     64       1  (byte) Happening for message appearance 1
+     65       1  (byte) Which type of craft 1
+     66       1  (byte) Exact description of craft 1
+     67       1  (byte) Operand
+     68       1  (byte) Happening for message appearance 2
+     69       1  (byte) Which type of craft 2
+     70       1  (byte) Exact description of craft 2
+     71       1  (byte) Unknown
+     72      15  (byte) Short message ID
+     87       1  (byte) Unknown
+     88       1  (byte) Delay
+     89       1  (byte) Unknown
+
+   --|Global Goals|------------------------------------------------------------
+   | This contains the full description of the global goals.                  |
+   ----------------------------------------------------------------------------
+   Offset Length  Type  Description
+      0       1  (byte) Condition 1
+      1       1  (byte) General type of Craft 1
+      2       1  (byte) Exact Craft description 1
+      3       1  (byte) Number of crafts 1
+      4       1  (byte) Condition 2
+      5       1  (byte) General type of Craft 2
+      6       1  (byte) Exact Craft description 2
+      7       1  (byte) Number of crafts 2
+      8       1  (byte) Operand
+
+
+
+last edit 09/05/97
+EOFL
